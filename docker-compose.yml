@@ -1,0 +1,46 @@
+version: "3.2"
+services:
+  php:
+    build: 
+      context: .
+    image: chakrigorantla/project-6130:1.0
+    networks:
+      - frontend
+      - backend
+    environment:
+      - MYSQL_HOST=my-mysql-site
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=pass
+      - MYSQL_DB=userdatahub
+    volumes:
+      - ./www/:/var/www/html/
+    ports:
+      - "30001:80"
+    container_name: my-php-site
+  mysql:
+    image: mysql:5.7
+    networks:
+      - backend
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpassword
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=pass 
+      - MYSQL_DATABASE=userdatahub
+    container_name: my-mysql-site
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:4.7
+    depends_on:
+      - mysql
+    networks:
+      - backend
+    ports:
+      - "30002:80"
+    environment:
+      - PMA_HOST=my-mysql-site
+      - PMA_PORT= 3306
+    volumes:
+      - /sessions
+    container_name: my-phpmyadmin-site
+networks:
+  frontend:
+  backend:
