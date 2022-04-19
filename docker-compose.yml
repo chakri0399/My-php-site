@@ -4,6 +4,7 @@ services:
     build: 
       context: .
     image: chakrigorantla/project-6130:1.0
+    platform: linux/amd64
     networks:
       - frontend
       - backend
@@ -30,6 +31,7 @@ services:
     container_name: my-mysql-site
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:4.7
+    platform: linux/amd64
     depends_on:
       - mysql
     networks:
