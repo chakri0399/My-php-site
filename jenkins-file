@@ -5,7 +5,7 @@ pipeline {
 		buildDiscarder(logRotator(numToKeepStr: ‘5’))
 	}
 	stages {
-		stages(’Tooling versions’) {
+		stage(’Tooling versions’) {
 			steps {
 				sh ‘’’
 					docker —version
