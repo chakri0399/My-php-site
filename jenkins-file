@@ -1,8 +1,8 @@
 
 pipeline {
-	agent { label ‘macos’}
+	agent { label 'macos'}
 	options {
-		buildDiscarder(logRotator(numToKeepStr: ‘5’))
+		buildDiscarder(logRotator(numToKeepStr: '5'))
 	}
 	stages {
 		stage('Tooling versions') {
